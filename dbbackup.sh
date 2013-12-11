@@ -4,6 +4,9 @@
 # Parent backup directory
 backup_parent_dir="./data"
 
+# Amazon s3 Bucket
+bucket_name="backup-of-development"
+
 # MySQL settings
 mysql_user="root"
 mysql_password=""
@@ -48,5 +51,6 @@ do
 done
 
 # Compressing all folder
-tar -czf ./data/mysql-${backup_date}.tar.gz ${backup_dir}/
-rm -rf ./data/${backup_date}
+tar -czf ${backup_parent_dir}/mysql-${backup_date}.tar.gz ${backup_dir}/
+rm -rf ${backup_parent_dir}/${backup_date}
+s3cmd put ${backup_parent_dir}/mysql-${backup_date}.tar.gz s3://${bucket_name}/mysql-${backup_date}.tar.gz
