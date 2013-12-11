@@ -1,5 +1,5 @@
 #!/bin/bash
-# Simple script to backup MySQL databases
+# Script to backup MySQL databases
 
 # Parent backup directory
 backup_parent_dir="./data"
@@ -48,5 +48,5 @@ do
 done
 
 # Compressing all folder
-tar -czf ./data/${backup_date}.tar.gz ${backup_dir}/
+tar -czf ./data/mysql-${backup_date}.tar.gz ${backup_dir}/
 rm -rf ./data/${backup_date}
