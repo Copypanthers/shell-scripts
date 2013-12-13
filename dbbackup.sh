@@ -53,4 +53,4 @@ done
 # Compressing all folder
 tar -czf ${backup_parent_dir}/mysql-${backup_date}.tar.gz ${backup_dir}/
 rm -rf ${backup_parent_dir}/${backup_date}
-s3cmd put ${backup_parent_dir}/mysql-${backup_date}.tar.gz s3://${bucket_name}/mysql-${backup_date}.tar.gz
+s3cmd put --guess-mime-type ${backup_parent_dir}/mysql-${backup_date}.tar.gz s3://${bucket_name}/mysql/mysql-${backup_date}.tar.gz

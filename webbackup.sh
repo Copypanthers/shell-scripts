@@ -11,4 +11,4 @@ backup_date=`date +%Y_%m_%d_%H_%M`
 
 # Compressing folder
 tar -czf ${backup_parent_dir}/web-${backup_date}.tar.gz ${document_root_dir}/
-s3cmd put ${backup_parent_dir}/web-${backup_date}.tar.gz s3://${bucket_name}/web-${backup_date}.tar.gz
+s3cmd put --guess-mime-type ${backup_parent_dir}/web-${backup_date}.tar.gz s3://${bucket_name}/http/web-${backup_date}.tar.gz
