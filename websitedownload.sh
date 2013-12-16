@@ -4,7 +4,7 @@
 # download directory
 download_dir="./data/"
 
-echo "Enter the URL for download: "
+echo "Enter the URL to download: "
 read URL
 
 
