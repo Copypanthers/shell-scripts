@@ -10,6 +10,8 @@ bucket_name="backup-of-development"
 # MySQL settings
 mysql_user="root"
 mysql_password=""
+test_database="copypanthers_test"
+production_database="copypanthers"
 
 # Read MySQL password from stdin if empty
 if [ -z "${mysql_password}" ]; then
@@ -54,3 +56,6 @@ done
 tar -czf ${backup_parent_dir}/mysql-${backup_date}.tar.gz ${backup_dir}/
 rm -rf ${backup_parent_dir}/${backup_date}
 s3cmd put --guess-mime-type ${backup_parent_dir}/mysql-${backup_date}.tar.gz s3://${bucket_name}/mysql/mysql-${backup_date}.tar.gz
+
+# Move test database to production
+mysqldump --user=${mysql_user} --password=${mysql_password} --add-drop-table ${test_database} | mysql --user=${mysql_user} --password=${mysql_password} ${production_database}
